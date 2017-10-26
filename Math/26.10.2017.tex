@@ -1,0 +1,113 @@
+\documentclass[a4paper,12pt]{article}
+
+%%% Работа с русским языком
+\usepackage{cmap}					% поиск в PDF
+\usepackage{mathtext} 				% русские буквы в формулах
+\usepackage[T2A]{fontenc}			% кодировка
+\usepackage[utf8]{inputenc}			% кодировка исходного текста
+\usepackage[english,russian]{babel}	% локализация и переносы
+
+%%% Дополнительная работа с математикой
+\usepackage{amsfonts,amssymb,amsthm,mathtools} % AMS
+\usepackage{amsmath}
+\usepackage{icomma} % "Умная" запятая: $0,2$ --- число, $0, 2$ --- перечисление
+
+%% Номера формул
+%\mathtoolsset{showonlyrefs=true} % Показывать номера только у тех формул, на которые есть \eqref{} в тексте.
+
+%% Шрифты
+\usepackage{euscript}	 % Шрифт Евклид
+\usepackage{mathrsfs} % Красивый матшрифт
+
+%% Свои команды
+\DeclareMathOperator{\sgn}{\mathop{sgn}}
+
+%% Перенос знаков в формулах (по Львовскому)
+\newcommand*{\hm}[1]{#1\nobreak\discretionary{}
+{\hbox{$\mathsurround=0pt #1$}}{}}
+
+%%% Работа с картинками
+\usepackage{graphicx}  % Для вставки рисунков
+\graphicspath{{images/}{images2/}}  % папки с картинками
+\setlength\fboxsep{3pt} % Отступ рамки \fbox{} от рисунка
+\setlength\fboxrule{1pt} % Толщина линий рамки \fbox{}
+\usepackage{wrapfig} % Обтекание рисунков и таблиц текстом
+
+%%% Работа с таблицами
+%\usepackage{array,tabularx,tabulary,booktabs} % Дополнительная работа с таблицами
+%\usepackage{longtable}  % Длинные таблицы
+%\usepackage{multirow} % Слияние строк в таблице
+
+
+%%% Заголовок
+\author{Nikita Muzykantov}
+\title{Матанализ. Семинар.}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\[ \lim_{x\to 0} \frac{a^x-1}{x} = \lim_{\log_a(1+y)\to 0}{\frac{y}{log_a (1+y)}} = \lim_{y\to 0} \frac{y\ln a}{\ln (y+1)} = \ln a
+\]
+
+\[ \lim_{x\to 0}\frac{a^x-b^x}{x} = \lim_{x\to 0}\left(\frac{a^x-1}{x}-\frac{b^x-1}{x}\right) = \ln a - \ln b = \ln \frac{a}{b}
+\]
+
+\[ \lim_{x\to 1} \frac{x^x-1}{x-1} = \lim_{x\to 1}\left(\frac{e^{x\ln x}}{x-1}\times \frac{x\ln x}{x\ln x}\right) = \lim_{x\to 1}\left(\frac{e^{x\ln x}}{x\ln x}\times \frac{x\ln x}{x-1}\right)
+\]
+Замена: $x=1+y$ 
+
+\[ \lim_{x\to 1}\frac{\sin{\pi x^\alpha}}{\sin{\pi x^\beta}}=  \lim_{x\to 1}\frac{-\sin{\pi (x^\alpha -1)}}{-\sin{\pi (x^\beta -1)}} =
+\lim_{x\to 1}\frac{x^\alpha -1}{x^\beta -1} = \]\\ \[
+=\lim_{x\to 1}\frac{(x-1)(x^\alpha -1)+(x^\alpha -2)+\dots+1}{(x-1)(x^\beta -1)+(x^\beta -2)+\dots+1}=\frac{\alpha}{\beta}
+\]
+
+\section{Задачи на выделение главного члена}
+1.Дано: $x\to 1; x^3-3x+2; c(x-1)^n$. Пусть $x=1+y$
+\[ \lim_{x\to 1}\frac{x^3-3x+2}{(x-1)^n}=\lim_{y\to 0}\frac{1+3y+3y^2+y^3-3y-3+2}{y^n} = lim_{y\to 0}\frac{y^3+3y^2}{y^n}=
+\]\\
+\[lim_{y\to 0} \frac{y+3}{y^{n-2}}=3\]
+\[x^3-3x+2=3(x-1)^2+O((x-1)^3)\]
+
+
+2. Дано: $x\to 1; \sqrt[3]{1-\sqrt{x}}; c(x-1)^n$.
+
+\[ \lim_{x\to 1}\frac{\sqrt[3]{1-\sqrt{x}}}{(x-1)^n}=\lim_{y\to 0}\sqrt[3]{\frac{(1-sqrt(x))(1+sqrt(x))}{(x-1)^{3n}(1+sqrt(x))}} = lim_{y\to 0}\frac{y^3+3y^2}{y^n}=
+\]
+
+\[=lim_{x\to 1}\frac{-1}{\sqrt[3]{}}\]
+
+
+3.Дано: $x\to 1; \ln x; c(x-1)^n$.
+
+\[ \lim_{x\to 1}\frac{\ln x}{(x-1)^n}=\lim_{y\to 0}\frac{\ln(1+y)}{y^n}=c=1
+\]
+
+
+4. Дано: $x\to 1; e^x-e; c(x-1)^n$.
+
+\[ \lim_{x\to 1}\frac{e^x-e}{(x-1)^n}=\lim_{y\to 0}\frac{e^{1+y}-e}{y^n}=\lim_{y\to 0}e\frac{e^y-1}{y^n}\]
+
+
+Ответ: $e^x-e=e(x-1) + o(x-1)$
+
+
+5. \[\lim_{n\to \infty}\left(\frac{6n}{3n^2-1}\sin(n^2)+\frac{sqrt(n)}{sqrt(n+1)+sqrt(n)}\right)=
+\]
+\[= \lim_{n\to \infty}\dots\]
+
+
+6. \[\lim_{x\to 0}\left(\frac{1+x\times 2^x}{1+x\times 3^x}\right)^{\frac{1}{x^2}}=\]
+\[=\lim_{x\to 0}\left(1+\frac{x(2^x-3^x)}{1+x\times 3^x}\right)^{\frac{1}{x^2}}=
+\lim_{x\to 0}\left(1+\frac{x(2^x-3^x)(1+\ln 2-1-x\ln 3)}{(1+x\times 3^x)(1+\ln 2-1-x\ln 3)}\right)^{\frac{1}{x^2}}=
+\]
+\[=\lim_{x\to 0}\left(1+\frac{x^2(2^x-3^x)\ln \frac{2}{3}}{(x\ln \frac{2}{3}(1+x\times 3^x))}\right)^{\frac{1}{x^2}\times \frac{\ln \frac{2}{3}}{\ln \frac{2}{3}}}=e^{\ln \frac{2}{3}}=\frac{2}{3}\]
+Т.к. $\frac{a^x-1}{x} \rightarrow_{x\to 0} \ln a$ \\ \\
+7. \[\lim_{x\to \frac{\pi}{4}} \frac{\sqrt[3]{\tg x}-1}{\log_{\frac{\pi}{4}}-1}= \]
+\[=\lim_{y\to 0}\ln \frac{\pi}{4} \frac{\frac{4y}{\pi}}{\ln (\frac{4y}{\pi}+1)\times \frac{4y}{\pi}}\times \frac{\left(\sqrt[3]{\frac{2\sin y}{\cos y-\sin x}}-1\right)}{den}
+\]
+
+8. $\lim f(x)$
+
+$x\to +-0$
+\end{document}
